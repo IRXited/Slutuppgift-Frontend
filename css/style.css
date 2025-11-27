@@ -1,247 +1,195 @@
-/*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
-
-/* main.css 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
-
-/* ==========================================================================
-   Base styles: opinionated defaults
-   ========================================================================== */
-
-html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
-}
-
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
-
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-}
-
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
-
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-  vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-  border: 0;
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-  resize: vertical;
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #ffecd2, #fcb69f, #ff9a9e);
+  color: #1f2933;
 }
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
-/* ==========================================================================
-   Helper classes
-   ========================================================================== */
-
-/*
- * Hide visually and from screen readers
- */
-
-.hidden,
-[hidden] {
-  display: none !important;
+.wrapper {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
 }
 
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
-
-.visually-hidden {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  /* 1 */
+header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/*
- * Extends the .visually-hidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
-
-.visually-hidden.focusable:active,
-.visually-hidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  white-space: inherit;
-  width: auto;
+header h1 {
+  font-size: 2.2rem;
+  letter-spacing: 1px;
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
-
-.invisible {
-  visibility: hidden;
+header p {
+  margin-top: 6px;
+  opacity: 0.9;
 }
 
-/*
- * Clearfix: contain floats
- *
- * The use of `table` rather than `block` is only necessary if using
- * `::before` to contain the top-margins of child elements.
- */
-
-.clearfix::before,
-.clearfix::after {
-  content: "";
-  display: table;
+.controls {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  /* Ändrad till column för att alla inputs ska ligga överst på mobilen */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
-.clearfix::after {
-  clear: both;
+.controls label {
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+/* Stil för SELECT och INPUT (återanvänder stil) */
+select, input[type="text"] {
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  outline: none;
+  background: #f9fafb;
 }
 
-@media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
+select:focus, input[type="text"]:focus {
+  border-color: #fb7185;
+  box-shadow: 0 0 0 3px rgba(251, 113, 133, 0.35);
 }
 
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
+/* Primär knappstil */
+.controls button {
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #fb7185, #f97316);
+  color: white;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 0 10px 20px rgba(248, 113, 113, 0.4);
+}
 
-@media print {
-  *,
-  *::before,
-  *::after {
-    background: #fff !important;
-    color: #000 !important;
-    /* Black prints faster */
-    box-shadow: none !important;
-    text-shadow: none !important;
+.controls button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 25px rgba(248, 113, 113, 0.55);
+}
+
+.controls button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 12px rgba(248, 113, 113, 0.4);
+}
+
+/* Sekundär knappstil för API-knappen (för att skilja dem åt) */
+.secondary-button {
+  background: #fff;
+  color: #fb7185;
+  border: 2px solid #fb7185;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+.secondary-button:hover {
+  background: #fdf2f8;
+  transform: translateY(-1px);
+}
+.secondary-button:active {
+  background: #fdf2f8;
+  transform: translateY(0);
+}
+
+
+.card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  padding: 24px 20px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* NYTT: is-loading-klassen ger visuell feedback vid klick/API-anrop */
+.card.is-loading {
+  opacity: 0.6;
+  filter: blur(2px);
+  transition: opacity 0.1s ease, filter 0.1s ease;
+}
+
+#pepText {
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
+.hint {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  text-align: center;
+  opacity: 0.8;
+}
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.96);
+    opacity: 0;
+    box-shadow: 0 10px 20px rgba(255, 120, 100, 0.4);
   }
-
-  a,
-  a:visited {
-    text-decoration: underline;
+  60% {
+    transform: scale(1.01);
+    opacity: 1;
   }
-
-  a[href]::after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]::after {
-    content: " (" attr(title) ")";
-  }
-
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-  a[href^="#"]::after,
-  a[href^="javascript:"]::after {
-    content: "";
-  }
-
-  pre {
-    white-space: pre-wrap !important;
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
+  100% {
+    transform: scale(1);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
   }
 }
 
+.card.pop {
+  animation: pop 0.25s ease-out;
+}
+
+/* Media Query för att lägga knapparna bredvid varandra på större skärmar */
+@media (min-width: 400px) {
+  .controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .controls button {
+    flex-grow: 1;
+  }
+  .controls label,
+  .controls select,
+  .controls input[type="text"] {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  #pepText {
+    font-size: 1.2rem;
+  }
+}

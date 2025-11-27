@@ -1,33 +1,51 @@
-<!doctype html>
-<html class="no-js" lang="">
-
+<!DOCTYPE html>
+<html lang="sv">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <meta charset="UTF-8">
+  <title>peppamig.nu – Dagens pepp</title>
+
   <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
-
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
-
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
-
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
 </head>
-
 <body>
+<div class="wrapper">
+  <header>
+    <h1>peppamig.nu</h1>
+    <p>Tryck på knappen och få din peppande fras för dagen </p>
+  </header>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/app.js"></script>
+  <main>
+    <section class="controls">
+      <label for="category">Vad vill du bli peppad inför?</label>
+      <select id="category">
+        <option value="any">Överraska mig (blanda allt)</option>
+        <option value="date">En dejt</option>
+        <option value="presentation">En presentation</option>
+        <option value="gym">Träning</option>
+        <option value="day">En riktigt bra dag</option>
+        <option value="work">Studier/Jobb</option>
+      </select>
 
+      <label for="search">Eller sök på ett ämne:</label>
+      <input type="text" id="search" placeholder="T.ex. 'mod' eller 'styrka'">
+
+      <button id="pepButton">Peppa mig! </button>
+
+      <button id="apiButton" class="secondary-button">Historisk Pepp</button>
+
+    </section>
+
+    <section class="card" id="pepCard">
+      <p id="pepText">Tryck på ”Peppa mig!” för att få din första pepp </p>
+    </section>
+
+    <p class="hint">Tips: byt kategori eller använd sökfunktionen.</p>
+  </main>
+
+  <footer>
+    Skapad för att sprida lite vardagspepp – du är viktig.
+  </footer>
+</div>
+
+<script src="js/app.js"></script>
 </body>
-
 </html>

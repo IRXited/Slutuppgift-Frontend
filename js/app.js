@@ -1,0 +1,182 @@
+// PepData: Objektet som innehåller alla peppfraser, organiserade per kategori.
+const pepData = {
+  date: [
+    "Du är charmigare än du tror – låt personen få se det. ",
+    "Kom ihåg: en dejt är ett samtal, inte en audition.",
+    "Du behöver inte vara perfekt, du behöver bara vara dig själv. Det räcker. ",
+    "Du är inte här för att imponera, du är här för att connecta.",
+    "Om du skrattar och är nyfiken, är du redan en fantastisk dejt." ,
+
+  ],
+  presentation: [
+    "Du kan det här bättre än du tror – publiken vill att du ska lyckas. ",
+    "Andas lugnt, prata långsamt – du äger rummet.",
+    "Det är okej att vara nervös. Mod är att göra det ändå.",
+    "Du är den som kan ämnet bäst just nu – lita på det. ",
+    "Ett leende i början är halva presentationen klar."
+  ],
+  gym: [
+    "Du behöver inte vara bäst, du behöver bara dyka upp. ",
+    "Framtida du jublar varje gång du går till gymmet.",
+    "Gör det här för din energi, din hjärna och ditt hjärta – inte bara kroppen.",
+    "En kort träning är alltid bättre än ingen träning alls.",
+    "Tänk inte 'jag måste träna', tänk 'jag får ta hand om min kropp idag'."
+  ],
+  day: [
+    "Du förtjänar en dag där saker känns lite lättare. ",
+    "Små steg räcker. Du behöver inte vinna dagen, bara ta nästa steg.",
+    "Du är mer kapabel än du känner dig just nu.",
+    "Det är okej att vila, okej att skratta och okej att bara vara.",
+    "Du har tagit dig igenom 100% av dina tuffa dagar hittills. Det här klarar du också."
+  ],
+  // NY KATEGORI: Studier/Jobb lades till (VG)
+  work: [
+    "Dina idéer är värdefulla. Våga dela med dig av dem. ",
+    "Fokusera på en sak i taget – du bygger framgång bit för bit.",
+    "Det är okej att be om hjälp. Det är ett tecken på styrka, inte svaghet. ",
+    "Ge dig själv en paus. Hjärtat av innovation är återhämtning.",
+    "Kom ihåg varför du började. Varje uppgift tar dig närmare målet."
+  ]
+};
+
+// Hjälpfunktion för att välja ett slumpmässigt element från en array.
+function getRandomFromArray(arr) {
+  const index = Math.floor(Math.random() * arr.length);
+  return arr[index];
+}
+
+// Global variabel för att undvika att samma fras visas två gånger i rad (bättre UX).
+let lastPepPhrase = "";
+
+// Funktion som hämtar en ny intern fras (används när man söker ELLER väljer kategori)
+function getNewPepPhrase(category) {
+  let availablePhrases;
+
+  if (category === "any") {
+    // Samla alla fraser från alla kategorier.
+    availablePhrases = Object.values(pepData).flat();
+  } else {
+    // Hämta fraser för den valda kategorin (|| [] skyddar mot fel).
+    availablePhrases = pepData[category] || [];
+  }
+
+  if (availablePhrases.length === 0) {
+    return "Oops, hittade inga peppfraser i den här kategorin! ";
+  }
+
+  // Filtrera bort den senast visade frasen.
+  const filteredPhrases = availablePhrases.filter(phrase => phrase !== lastPepPhrase);
+  // Välj från de filtrerade fraserna (eller alla om bara en finns kvar).
+  const phrasesToChooseFrom = filteredPhrases.length > 0 ? filteredPhrases : availablePhrases;
+
+  const newPepPhrase = getRandomFromArray(phrasesToChooseFrom);
+  lastPepPhrase = newPepPhrase; // Uppdatera variabeln.
+
+  return newPepPhrase;
+}
+
+async function fetchApiQuote() {
+  // Ändrar URL till Advice Slip API
+  const apiUrl = "https://api.adviceslip.com/advice";
+
+  pepCard.classList.add("is-loading"); // Visuell feedback
+
+  try {
+    // 1. Anropa API:et
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // 2. Konvertera svaret till JSON
+    const data = await response.json();
+
+    // 3. HÄMTAR DATA KORREKT: Vi vet att datan ligger i data.slip.advice
+    const advice = data.slip.advice;
+
+    // 4. Returnerar det hämtade rådet
+    return `"${advice}"`;
+
+  } catch (error) {
+    console.error("Fel vid hämtning av API-citat:", error);
+    return "Kunde inte hämta externt råd just nu. Kontrollera din internetanslutning!";
+  } finally {
+    // 5. Tar bort laddningsindikatorn oavsett resultat
+    pepCard.classList.remove("is-loading");
+  }
+}
+
+// NY FUNKTION: Sök i de interna fraserna efter ett ord (VG)
+function searchPepPhrases(query) {
+  const lowerQuery = query.toLowerCase().trim();
+  if (!lowerQuery) return [];
+
+  // Samla alla fraser
+  const allPhrases = Object.values(pepData).flat();
+
+  // Filtrera fraserna som matchar söktermen
+  const matchingPhrases = allPhrases.filter(phrase =>
+    phrase.toLowerCase().includes(lowerQuery)
+  );
+
+  return matchingPhrases;
+}
+
+
+// Hämta DOM-element (HTML-element)
+const categorySelect = document.getElementById("category");
+const searchInput = document.getElementById("search"); // NYTT: Sökfältet
+const pepButton = document.getElementById("pepButton");
+const pepText = document.getElementById("pepText");
+const pepCard = document.getElementById("pepCard");
+const apiButton = document.getElementById("apiButton"); // NYTT: API-knappen
+
+
+// UPPDATERAD EVENTLYSSNARE för den primära "Peppa mig!"-knappen
+pepButton.addEventListener("click", function () {
+
+  const searchQuery = searchInput.value;
+  let newPepPhrase;
+
+  if (searchQuery) {
+    // FALL 1: Sökfältet är ifyllt (VG-logik)
+    const results = searchPepPhrases(searchQuery);
+
+    if (results.length > 0) {
+      newPepPhrase = getRandomFromArray(results);
+    } else {
+      newPepPhrase = `Hittade ingen peppfras med ordet "${searchQuery}". Prova ett annat ord!`;
+    }
+    // Rensa sökfältet efter sökning för bättre UX
+    searchInput.value = "";
+
+  } else {
+    // FALL 2: Använd kategori (Ursprunglig logik)
+    const category = categorySelect.value;
+    newPepPhrase = getNewPepPhrase(category);
+  }
+
+  // Visuell feedback och animation
+  pepCard.classList.add("is-loading");
+
+  setTimeout(() => {
+    pepText.textContent = newPepPhrase;
+
+    pepCard.classList.remove("is-loading");
+    pepCard.classList.remove("pop");
+    setTimeout(() => pepCard.classList.add("pop"), 10);
+  }, 100);
+});
+
+
+// NY EVENTLYSSNARE för den sekundära "Internationell Pepp"-knappen (API)
+apiButton.addEventListener("click", async function () {
+  // Använd 'await' för att vänta tills API-anropet är klart
+  const newPepPhrase = await fetchApiQuote();
+
+  pepText.textContent = newPepPhrase;
+
+  // Starta animationen
+  pepCard.classList.remove("pop");
+  setTimeout(() => pepCard.classList.add("pop"), 10);
+});
