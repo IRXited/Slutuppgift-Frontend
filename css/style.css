@@ -10,8 +10,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at top, #ffecd2, #fcb69f, #ff9a9e);
-  color: #1f2933;
+  background: linear-gradient( #E59312, #F4B315, #D3AF85, #8E5915, #423738, #1A141A);
+  color: #3a210b;
 }
 
 .wrapper {
@@ -138,6 +138,7 @@ select:focus, input[type="text"]:focus {
   font-size: 0.8rem;
   text-align: center;
   opacity: 0.8;
+  color: #eaeaea;
 }
 
 footer {
@@ -145,26 +146,31 @@ footer {
   text-align: center;
   font-size: 0.75rem;
   opacity: 0.7;
+  color: #eaeaea;
 }
 
-@keyframes pop {
+@keyframes subtle-pop {
   0% {
-    transform: scale(0.96);
-    opacity: 0;
-    box-shadow: 0 10px 20px rgba(255, 120, 100, 0.4);
+    transform: scale(0.98); /* Startar något mindre */
+    opacity: 0.5; /* Startar med lägre transparens */
+    /* Använd en mjuk inre skugga vid start för en "laddad" känsla */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5) inset;
   }
-  60% {
-    transform: scale(1.01);
+  50% {
+    transform: scale(1.005); /* Växer minimalt, mjuk fjädring */
     opacity: 1;
   }
   100% {
     transform: scale(1);
+    /* Återställ till den vanliga, snygga skuggan */
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
   }
 }
 
 .card.pop {
-  animation: pop 0.25s ease-out;
+  /* Använd den nya animationen med en snabb timing */
+  animation: subtle-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* cubic-bezier ger en mjuk "fjädringseffekt" som går över 100% innan den lägger sig */
 }
 
 /* Media Query för att lägga knapparna bredvid varandra på större skärmar */

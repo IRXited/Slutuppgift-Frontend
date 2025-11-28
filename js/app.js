@@ -51,7 +51,6 @@ const pepData = {
     "Se dig själv i spegel och le, skratta högt! Du är kanon!" ,
     "Ingen är som du, du är ju helt fantastiskt!" ,
   ],
-  // NY KATEGORI: Studier/Jobb lades till (VG)
   work: [
     "Dina idéer är värdefulla. Våga dela med dig av dem. ",
     "Fokusera på en sak i taget, du bygger framgång bit för bit.",
