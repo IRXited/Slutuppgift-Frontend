@@ -1,4 +1,4 @@
-// PepData: Objektet som innehåller alla peppfraser, organiserade per kategori.
+// PepData: HÄR UNDER ÄR LISTAN MED DE OLIKA FRASTERNA SOM KOMMER ATT KOMMA FRAM NÄR AN GENERERAR EN PEPP
 const pepData = {
   date: [
     "Du är charmigare än du tror – låt personen få se det. ",
@@ -6,36 +6,63 @@ const pepData = {
     "Du behöver inte vara perfekt, du behöver bara vara dig själv. Det räcker. ",
     "Du är inte här för att imponera, du är här för att connecta.",
     "Om du skrattar och är nyfiken, är du redan en fantastisk dejt." ,
+    "Va dig själv, det är den personen hen ska tycka om." ,
+    "Du är en bra dejt, det här blir kul!" ,
+    "Slappna av och var dig själv." ,
+    "Du är här för att ha roligt, inte för att prestera." ,
+    "Du ser bra ut och jag är redo." ,
+    "Du är intressant för hen också, annars hade hen inte sagt ja till daten."
 
   ],
   presentation: [
-    "Du kan det här bättre än du tror – publiken vill att du ska lyckas. ",
-    "Andas lugnt, prata långsamt – du äger rummet.",
+    "Du kan det här bättre än du tror, publiken vill att du ska lyckas. ",
+    "Andas lugnt, prata långsamt, du äger rummet.",
     "Det är okej att vara nervös. Mod är att göra det ändå.",
-    "Du är den som kan ämnet bäst just nu – lita på det. ",
-    "Ett leende i början är halva presentationen klar."
+    "Du är den som kan ämnet bäst just nu, lita på det! ",
+    "Ett leende i början är halva presentationen klar." ,
+    "Du kan ditt material, du är experten i rummet!" ,
+    "Andas djupt, tala långsamt och håll ögonkontakt" ,
+    "Du har gjort dehär förut, du klarar de!" ,
+    "Dra igång din favoritlåt för att tagga till!" ,
+    "Även om du gör något fel, fortsätt bara!, ingen kommer att märka det."
   ],
   gym: [
     "Du behöver inte vara bäst, du behöver bara dyka upp. ",
     "Framtida du jublar varje gång du går till gymmet.",
     "Gör det här för din energi, din hjärna och ditt hjärta – inte bara kroppen.",
     "En kort träning är alltid bättre än ingen träning alls.",
-    "Tänk inte 'jag måste träna', tänk 'jag får ta hand om min kropp idag'."
+    "Tänk inte 'jag måste träna', tänk 'jag får ta hand om min kropp idag'." ,
+    "Varje rep räknas, fokusera och fullfölj!" ,
+    "Smärtan är tillfällig men styrkan är permanent." ,
+    "Du är starkare än du tror, inga genvägar nu." ,
+    "Du gör dehär för dig, ingen annan!" ,
+    "Idag tar du nytt PB!" ,
   ],
   day: [
     "Du förtjänar en dag där saker känns lite lättare. ",
     "Små steg räcker. Du behöver inte vinna dagen, bara ta nästa steg.",
     "Du är mer kapabel än du känner dig just nu.",
     "Det är okej att vila, okej att skratta och okej att bara vara.",
-    "Du har tagit dig igenom 100% av dina tuffa dagar hittills. Det här klarar du också."
+    "Du har tagit dig igenom 100% av dina tuffa dagar hittills. Det här klarar du också." ,
+    "Du sätter tonen för denhär dagen, du är fokuserad och lugn!" ,
+    "Du har tid för de som är viktigt, ta en sak i taget!" ,
+    "Du är tacksam för denhär dagen och för allt den har att erbjuda." ,
+    "Skaka loss till lite go musik, den energin har du förtjänat." ,
+    "Se dig själv i spegel och le, skratta högt! Du är kanon!" ,
+    "Ingen är som du, du är ju helt fantastiskt!" ,
   ],
   // NY KATEGORI: Studier/Jobb lades till (VG)
   work: [
     "Dina idéer är värdefulla. Våga dela med dig av dem. ",
-    "Fokusera på en sak i taget – du bygger framgång bit för bit.",
+    "Fokusera på en sak i taget, du bygger framgång bit för bit.",
     "Det är okej att be om hjälp. Det är ett tecken på styrka, inte svaghet. ",
     "Ge dig själv en paus. Hjärtat av innovation är återhämtning.",
-    "Kom ihåg varför du började. Varje uppgift tar dig närmare målet."
+    "Kom ihåg varför du började. Varje uppgift tar dig närmare målet." ,
+    "Fokusera nu, njut senare. Varje ansträngning leder till restultat." ,
+    "Du gör framsteg, inte perfektion. Små steg framåt är också en vinst." ,
+    "Du prioriterar de viktigaste just nu, inga distraktioner!" ,
+    "Din kunskap är din framtid. Du investerar i dig själv idag." ,
+    "Du är kapabel att lösa detta, ta ett djupt andetag!"
   ]
 };
 
@@ -145,7 +172,7 @@ pepButton.addEventListener("click", function () {
     if (results.length > 0) {
       newPepPhrase = getRandomFromArray(results);
     } else {
-      newPepPhrase = `Hittade ingen peppfras med ordet "${searchQuery}". Prova ett annat ord!`;
+      newPepPhrase = `Hittade tyvärr ingen peppfras med ordet "${searchQuery}". Prova gärna ett annat ord!`;
     }
     // Rensa sökfältet efter sökning för bättre UX
     searchInput.value = "";

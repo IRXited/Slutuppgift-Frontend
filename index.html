@@ -4,48 +4,48 @@
   <meta charset="UTF-8">
   <title>peppamig.nu – Dagens pepp</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css"> <!-- KODEN FÖR ATT KOPPLA DENNA SIDA MED style.css -->
 </head>
 <body>
 <div class="wrapper">
   <header>
-    <h1>peppamig.nu</h1>
-    <p>Tryck på knappen och få din peppande fras för dagen </p>
+    <h1>peppamig.nu</h1> <!-- MIN RUBRIK PÅ SIDAN-->
+    <p>Tryck på knappen och få pepp inför de du behöver </p> <!-- Inbjudande förklaring på hur sidan fungerar-->
   </header>
 
   <main>
     <section class="controls">
-      <label for="category">Vad vill du bli peppad inför?</label>
+      <label for="category">Vad vill du bli peppad inför?</label> <!-- Mitt filter med kategorier du kan välja ifrån för en mer specifik pepp -->
       <select id="category">
-        <option value="any">Överraska mig (blanda allt)</option>
+        <option value="any">Överraska mig (gott och blandat)</option> <!-- De olika kategorierna uppradade som man kan välja bland -->
         <option value="date">En dejt</option>
         <option value="presentation">En presentation</option>
         <option value="gym">Träning</option>
-        <option value="day">En riktigt bra dag</option>
+        <option value="day">Vardagsboost</option>
         <option value="work">Studier/Jobb</option>
       </select>
 
-      <label for="search">Eller sök på ett ämne:</label>
-      <input type="text" id="search" placeholder="T.ex. 'mod' eller 'styrka'">
+      <label for="search">Eller sök på ett ämne:</label> <!-- MITT SÖKFÖNSTER -->
+      <input type="text" id="search" placeholder="T.ex. 'mod' eller 'styrka'"> <!-- exempel på sökord -->
 
-      <button id="pepButton">Peppa mig! </button>
+      <button id="pepButton">Peppa mig! </button> <!-- KNAPP FÖR EN GENERARA PEPP-->
 
-      <button id="apiButton" class="secondary-button">Historisk Pepp</button>
+      <button id="apiButton" class="secondary-button">Historisk Pepp</button> <!-- KNAPP FÖR PEPP IFRÅN MIN API -->
 
     </section>
 
     <section class="card" id="pepCard">
-      <p id="pepText">Tryck på ”Peppa mig!” för att få din första pepp </p>
+      <p id="pepText">Tryck på ”Peppa mig!” för att få din första pepp </p>    <!-- I pepp fältet står detta innan man fått sin första pepp-->
     </section>
 
-    <p class="hint">Tips: byt kategori eller använd sökfunktionen.</p>
+    <p class="hint">Tips: byt kategori eller använd sökfunktionen.</p> <!-- TEXT MED HINT UNDER PEPP FÖNSTER -->
   </main>
 
   <footer>
-    Skapad för att sprida lite vardagspepp – du är viktig.
+    Skapad för att sprida lite vardagspepp, du är viktig! <!-- MIN FOOTER LÄNGST NED PÅ SIDAN MED FÖRKLARING OM VARFÖR DEN SKAPADES-->
   </footer>
 </div>
 
-<script src="js/app.js"></script>
+<script src="js/app.js"></script> <!-- DETTA ÄR SKRIVET FÖR ATT MIN JAVA SCRIPT SKA KOPPPLAS IHOP MED IN HTML-->
 </body>
 </html>
