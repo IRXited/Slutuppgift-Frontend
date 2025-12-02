@@ -1,4 +1,4 @@
-// PepData: HÄR UNDER ÄR LISTAN MED DE OLIKA FRASTERNA SOM KOMMER ATT KOMMA FRAM NÄR AN GENERERAR EN PEPP
+// PepData: HÄR UNDER ÄR LISTAN MED DE OLIKA FRASTERNA SOM KOMMER ATT KOMMA FRAM NÄR MAN GENERERAR EN PEPP
 const pepData = {
   date: [
     "Du är charmigare än du tror – låt personen få se det. ",
@@ -71,15 +71,15 @@ function getRandomFromArray(arr) {
   return arr[index];
 }
 
-// Global variabel för att undvika att samma fras visas två gånger i rad (bättre UX).
+// Denna variabel är skapad för att inte samma fras ska genereras fram 2 ggr i rad - MINSKAR UPPREPNING
 let lastPepPhrase = "";
 
-// Funktion som hämtar en ny intern fras (används när man söker ELLER väljer kategori)
+// Denna funktion genererar fram en ny fras - INTERN HÄMTNING
 function getNewPepPhrase(category) {
   let availablePhrases;
 
   if (category === "any") {
-    // Samla alla fraser från alla kategorier.
+    // Samla alla fraser från alla kategorier. - IF satser för att de beror på vad användaren klickar på
     availablePhrases = Object.values(pepData).flat();
   } else {
     // Hämta fraser för den valda kategorin (|| [] skyddar mot fel).
@@ -100,7 +100,7 @@ function getNewPepPhrase(category) {
 
   return newPepPhrase;
 }
-
+ //Här under är kodningen ör att generera fram famous quotes ifrån en API
 async function fetchApiQuote() {
   // Ändrar URL till Advice Slip API
   const apiUrl = "https://api.adviceslip.com/advice";
@@ -117,7 +117,7 @@ async function fetchApiQuote() {
     // 2. Konvertera svaret till JSON
     const data = await response.json();
 
-    // 3. HÄMTAR DATA KORREKT: Vi vet att datan ligger i data.slip.advice
+    // 3. HÄMTAR DATA KORREKT: datan ligger i data.slip.advice
     const advice = data.slip.advice;
 
     // 4. Returnerar det hämtade rådet
@@ -125,14 +125,14 @@ async function fetchApiQuote() {
 
   } catch (error) {
     console.error("Fel vid hämtning av API-citat:", error);
-    return "Kunde inte hämta externt råd just nu. Kontrollera din internetanslutning!";
+    return "Kunde inte hämta externt råd just nu. Kontrollera din internetanslutning!"; //Eventuella error meddelande om de skulle va något strul
   } finally {
     // 5. Tar bort laddningsindikatorn oavsett resultat
     pepCard.classList.remove("is-loading");
   }
 }
 
-// NY FUNKTION: Sök i de interna fraserna efter ett ord (VG)
+// Skriv specifika ord i sökfönstret för att få fram en pepp som innehåller frasen du skriver
 function searchPepPhrases(query) {
   const lowerQuery = query.toLowerCase().trim();
   if (!lowerQuery) return [];
@@ -165,13 +165,13 @@ pepButton.addEventListener("click", function () {
   let newPepPhrase;
 
   if (searchQuery) {
-    // FALL 1: Sökfältet är ifyllt (VG-logik)
+    // Förifyllt sökfönster för att ge förslag - Bra UX
     const results = searchPepPhrases(searchQuery);
 
     if (results.length > 0) {
       newPepPhrase = getRandomFromArray(results);
     } else {
-      newPepPhrase = `Hittade tyvärr ingen peppfras med ordet "${searchQuery}". Prova gärna ett annat ord!`;
+      newPepPhrase = `Hittade tyvärr ingen peppfras med ordet "${searchQuery}". Prova gärna ett annat ord!`; //vad som visas om fras inte finns
     }
     // Rensa sökfältet efter sökning för bättre UX
     searchInput.value = "";
