@@ -84,7 +84,7 @@ select:focus, input[type="text"]:focus {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
-  background: linear-gradient(135deg, #7e5936, #f5cb86);
+  background: linear-gradient(135deg, #3a2b26, #efba40);
   color: white;
   transition: transform 0.1s ease, box-shadow 0.1s ease;
   box-shadow: 0 10px 20px rgb(73, 73, 73);
@@ -96,24 +96,6 @@ select:focus, input[type="text"]:focus {
 }
 
 .controls button:active {
-  transform: translateY(0);
-  box-shadow: 0 6px 12px rgb(222, 136, 56);
-}
-
-/* Sekundär knappstil för API-knappen (för att skilja dem åt) */
-.secondary-button {
-  background: #fff;
-  color: #ff0028;
-  border: 2px solid #fb7185;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-  box-shadow: 0 10px 20px rgb(73, 73, 73);
-}
-
-.secondary-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 25px rgb(98, 186, 181);
-}
-.secondary-button:active {
   transform: translateY(0);
   box-shadow: 0 6px 12px rgb(222, 136, 56);
 }
