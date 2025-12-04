@@ -1,5 +1,5 @@
-// PepData: HÄR UNDER ÄR LISTAN MED DE OLIKA FRASTERNA SOM KOMMER ATT KOMMA FRAM NÄR MAN GENERERAR EN PEPP
-const pepData = {
+
+const pepData = { //Här under är de rubriker och fraser jag har på min sida, har dessa för koden ska ha en intern lista att hämta fraser ifrån
   date: [
     "Du är charmigare än du tror – låt personen få se det. ",
     "Kom ihåg: en dejt är ett samtal, inte en audition.",
@@ -65,16 +65,16 @@ const pepData = {
   ]
 };
 
-// Hjälpfunktion för att välja ett slumpmässigt element från en array.
+// Hjälpfunktion för att välja ett slumpmässigt element från en array. (returnera fraser ifrån min listor)
 function getRandomFromArray(arr) {
   const index = Math.floor(Math.random() * arr.length);
   return arr[index];
 }
 
-// Denna variabel är skapad för att inte samma fras ska genereras fram 2 ggr i rad - MINSKAR UPPREPNING
+// Variabel är skapad för att inte samma fras ska genereras fram 2 ggr i rad - MINSKAR UPPREPNING
 let lastPepPhrase = "";
 
-// Denna funktion genererar fram en ny fras - INTERN HÄMTNING
+// Denna funktion genererar fram en ny frasv på vald kategori - INTERN HÄMTNING
 function getNewPepPhrase(category) {
   let availablePhrases;
 
@@ -100,7 +100,7 @@ function getNewPepPhrase(category) {
 
   return newPepPhrase;
 }
- //Här under är kodningen ör att generera fram famous quotes ifrån en API
+ //genererar fram famous quotes ifrån via ett API-anrop
 async function fetchApiQuote() {
   // Ändrar URL till Advice Slip API
   const apiUrl = "https://api.adviceslip.com/advice";
@@ -132,15 +132,15 @@ async function fetchApiQuote() {
   }
 }
 
-// Skriv specifika ord i sökfönstret för att få fram en pepp som innehåller frasen du skriver
+// Söker igenom den interna fraslistan efter matchande ord (de ord du skrivit)
 function searchPepPhrases(query) {
   const lowerQuery = query.toLowerCase().trim();
   if (!lowerQuery) return [];
 
-  // Samla alla fraser
+  // Samla alla fraser ifrån alla kategorier
   const allPhrases = Object.values(pepData).flat();
 
-  // Filtrera fraserna som matchar söktermen
+  // Filtrera fraserna som matchar sökordet
   const matchingPhrases = allPhrases.filter(phrase =>
     phrase.toLowerCase().includes(lowerQuery)
   );
@@ -158,7 +158,7 @@ const pepCard = document.getElementById("pepCard");
 const apiButton = document.getElementById("apiButton"); // NYTT: API-knappen
 
 
-// UPPDATERAD EVENTLYSSNARE för den primära "Peppa mig!"-knappen
+// EVENTLYSSNARE för den primära "Peppa mig!"-knappen
 pepButton.addEventListener("click", function () {
 
   const searchQuery = searchInput.value;
@@ -173,36 +173,34 @@ pepButton.addEventListener("click", function () {
     } else {
       newPepPhrase = `Hittade tyvärr ingen peppfras med ordet "${searchQuery}". Prova gärna ett annat ord!`; //vad som visas om fras inte finns
     }
-    // Rensa sökfältet efter sökning för bättre UX
+    // rensa sökfältet efter sökning för bättre UX
     searchInput.value = "";
 
   } else {
-    // FALL 2: Använd kategori (Ursprunglig logik)
+    // eller använd kategori (Ursprunglig logik)
     const category = categorySelect.value;
     newPepPhrase = getNewPepPhrase(category);
   }
 
-  // Visuell feedback och animation
-  pepCard.classList.add("is-loading");
-
+  // Visuell animation (den synkrona logiken behöver ingen is-loading)
   setTimeout(() => {
     pepText.textContent = newPepPhrase;
 
-    pepCard.classList.remove("is-loading");
+    // Starta pop-animationen (tar bort och lägger till klassen igen)
     pepCard.classList.remove("pop");
     setTimeout(() => pepCard.classList.add("pop"), 10);
   }, 100);
 });
 
 
-// NY EVENTLYSSNARE för den sekundära "Internationell Pepp"-knappen (API)
+// NY EVENTLYSSNARE för den sekundära "Historisk Pepp"-knappen (API)
 apiButton.addEventListener("click", async function () {
   // Använd 'await' för att vänta tills API-anropet är klart
   const newPepPhrase = await fetchApiQuote();
 
   pepText.textContent = newPepPhrase;
 
-  // Starta animationen
+  // Starta pop-animationen
   pepCard.classList.remove("pop");
   setTimeout(() => pepCard.classList.add("pop"), 10);
 });
