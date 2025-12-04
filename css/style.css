@@ -10,8 +10,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient( #E59312, #F4B315, #D3AF85, #8E5915, #423738, #1A141A);
-  color: #3a210b;
+  background-image: url("peppamigbbg10.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #491d12;
 }
 
 .wrapper {
@@ -42,7 +45,7 @@ header p {
 }
 
 .controls {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgb(226, 222, 212);
   padding: 16px;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
@@ -62,7 +65,7 @@ header p {
 select, input[type="text"] {
   padding: 10px 12px;
   border-radius: 999px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e2ded4;
   font-size: 0.95rem;
   outline: none;
   background: #f9fafb;
@@ -89,18 +92,18 @@ select:focus, input[type="text"]:focus {
 
 .controls button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 25px rgb(208, 98, 36);
+  box-shadow: 0 14px 25px rgb(98, 186, 181);
 }
 
 .controls button:active {
   transform: translateY(0);
-  box-shadow: 0 6px 12px rgb(243, 193, 14);
+  box-shadow: 0 6px 12px rgb(222, 136, 56);
 }
 
 /* Sekundär knappstil för API-knappen (för att skilja dem åt) */
 .secondary-button {
   background: #fff;
-  color: #fb7185;
+  color: #ff0028;
   border: 2px solid #fb7185;
   transition: transform 0.1s ease, box-shadow 0.1s ease;
   box-shadow: 0 10px 20px rgb(73, 73, 73);
@@ -108,11 +111,11 @@ select:focus, input[type="text"]:focus {
 
 .secondary-button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 25px rgb(208, 98, 36);
+  box-shadow: 0 14px 25px rgb(98, 186, 181);
 }
 .secondary-button:active {
   transform: translateY(0);
-  box-shadow: 0 6px 12px rgb(253, 201, 1);
+  box-shadow: 0 6px 12px rgb(222, 136, 56);
 }
 
 
