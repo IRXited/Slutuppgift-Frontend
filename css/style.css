@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
 }
-
+/*Här under finns de generella style inställningarna för min sida */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   min-height: 100vh;
@@ -38,7 +38,7 @@ header p {
   margin-top: 3px;
   opacity: 0.9;
 }
-
+/*Styling av en av mina klasser jag gjort i HTML*/
 .logga {
   height: 300px;
   width: auto;

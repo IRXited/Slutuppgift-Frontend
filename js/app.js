@@ -74,7 +74,7 @@ function getRandomFromArray(arr) {
 // Variabel är skapad för att inte samma fras ska genereras fram 2 ggr i rad - MINSKAR UPPREPNING
 let lastPepPhrase = "";
 
-// Denna funktion genererar fram en ny frasv på vald kategori - INTERN HÄMTNING
+// Denna funktion genererar fram en ny fras på vald kategori - INTERN HÄMTNING
 function getNewPepPhrase(category) {
   let availablePhrases;
 
