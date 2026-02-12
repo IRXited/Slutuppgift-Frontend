@@ -151,11 +151,11 @@ function searchPepPhrases(query) {
 
 // Hämta DOM-element (HTML-element)
 const categorySelect = document.getElementById("category");
-const searchInput = document.getElementById("search"); // NYTT: Sökfältet
+const searchInput = document.getElementById("search");
 const pepButton = document.getElementById("pepButton");
 const pepText = document.getElementById("pepText");
 const pepCard = document.getElementById("pepCard");
-const apiButton = document.getElementById("apiButton"); // NYTT: API-knappen
+const apiButton = document.getElementById("apiButton");
 
 
 // EVENTLYSSNARE för den primära "Peppa mig!"-knappen
@@ -193,9 +193,9 @@ pepButton.addEventListener("click", function () {
 });
 
 
-// NY EVENTLYSSNARE för den sekundära "Historisk Pepp"-knappen (API)
+// EVENTLYSSNARE för den sekundära "Historisk Pepp"-knappen (API)
 apiButton.addEventListener("click", async function () {
-  // Använd 'await' för att vänta tills API-anropet är klart
+  // Använder 'await' för att vänta tills API-anropet är klart
   const newPepPhrase = await fetchApiQuote();
 
   pepText.textContent = newPepPhrase;
